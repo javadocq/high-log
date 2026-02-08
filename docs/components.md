@@ -11,11 +11,12 @@
 6. [Tab](#tab)
 7. [Label](#label)
 8. [Footer](#footer)
-9. [ListFilter](#list-filter)
-10. [SearchFilter](#search-filter)
-11. [ListPopUp](#list-popup)
-12. [RecordCard](#recordcard)
-13. [QuestionCard](#questioncard)
+9. [Header](#header)
+10. [ListFilter](#list-filter)
+11. [SearchFilter](#search-filter)
+12. [ListPopUp](#list-popup)
+13. [RecordCard](#recordcard)
+14. [QuestionCard](#questioncard)
 
 ---
 
@@ -281,6 +282,27 @@ function Layout() {
 
 ---
 
+## Header <a name="header"></a>
+
+애플리케이션의 전역 헤더 컴포넌트입니다. 로고, 네비게이션 메뉴, 로그인 상태에 따른 UI를 포함합니다.
+
+| Prop 이름 | 타입 | 설명 | 필수 여부 |
+| --- | --- | --- | --- |
+| _없음_ | | Header 컴포넌트는 현재 직접적인 Props를 받지 않습니다. 내부 상태 및 전역 상태(예: 로그인 여부)에 따라 동작합니다. | |
+
+### 사용 방법
+
+```typescript
+import Header from "@/components/common/Header";
+
+function App() {
+  return (
+    <div>
+      <Header />
+      {/* 나머지 페이지 콘텐츠 */}
+    </div>
+```
+
 ## ListFilter <a name="list-filter"></a>
 
 필터 아이콘, 입력 필드, 그리고 목록 팝업을 포함하는 복합 필터 컴포넌트입니다. 
@@ -456,35 +478,6 @@ function MyComponent() {
     </>
   );
 }
-```
-
-### 여러 개 나열하기
-
-```typescript
-// 서버에서 받은 데이터를 그대로 사용
-const questions = [
-  {
-    labelType: "basic",
-    text: "문제 1",
-    questionPurposeText: "질문 목적 설명",
-    answerPointText: "답변 포인트 설명",
-    answerText: "모범 답변",
-    answerCriteriaText: "답변 기준",
-  },
-  {
-    labelType: "intermediate",
-    text: "문제 2",
-    passage: "제시문 내용", // 있으면 자동으로 표시
-    questionPurposeText: "질문 목적 설명",
-    answerPointText: "답변 포인트 설명",
-    answerText: "모범 답변",
-    answerCriteriaText: "답변 기준",
-  },
-];
-
-{questions.map((question, index) => (
-  <QuestionCard key={index} {...question} />
-))}
 ```
 
 ### Props
