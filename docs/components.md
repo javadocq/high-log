@@ -19,6 +19,8 @@
 14. [DefaultInput](#default-input)
 15. [DropDown](#dropdown)
 16. [RadioBox](#radiobox)
+17. [RecordCard](#recordcard)
+18. [QuestionCard](#questioncard)
 
 ---
 
@@ -542,3 +544,100 @@ function MyComponent() {
 | --- | --- | --- | --- |
 | `isChecked` | `boolean` | 선택 여부 | Yes |
 | `onClick` | `() => void` | 클릭 핸들러 | Yes |
+
+---
+
+## RecordCard <a name="recordcard"></a>
+
+레코드를 표시하는 카드 컴포넌트입니다. 왼쪽에 텍스트가 있고 오른쪽에 화살표 아이콘 버튼이 있습니다.
+
+### 사용 방법
+
+```typescript
+import RecordCard from "@/components/card/RecordCard";
+
+function MyComponent() {
+  return (
+    <RecordCard 
+      text="레코드 텍스트" 
+      onClick={() => console.log('RecordCard clicked')} 
+    />
+  );
+}
+```
+
+### Props
+
+| Prop 이름 | 타입 | 설명 | 필수 여부 |
+| --- | --- | --- | --- |
+| `text` | `string` | 카드에 표시할 텍스트 | Yes |
+| `onClick` | `() => void` | 오른쪽 아이콘 버튼 클릭 핸들러 | No |
+
+---
+
+## QuestionCard <a name="questioncard"></a>
+
+문제 카드를 표시하는 컴포넌트입니다. 문제 제목, 제시문(선택), 질문 목적, 답변 포인트, 모범 답변 등을 표시할 수 있습니다.
+
+### 사용 방법
+
+```typescript
+import { useState } from "react";
+import QuestionCard from "@/components/card/QuestionCard";
+
+function MyComponent() {
+  const [favoriteType, setFavoriteType] = useState<"default" | "select">("default");
+
+  return (
+    <>
+      {/* 제시문 없는 경우 */}
+      <QuestionCard 
+        labelType="basic" 
+        text="문제 제목" 
+        favoriteType={favoriteType}
+        onFavoriteClick={() => setFavoriteType(prev => prev === "default" ? "select" : "default")}
+        questionPurposeText="질문 목적 설명 텍스트"
+        answerPointText="답변 포인트 설명 텍스트"
+        answerText="모범 답변 내용"
+        answerCriteriaText="모범 답변 기준 설명"
+        onAnswerButtonClick={() => console.log('모범 답변 확인하기 클릭')}
+      />
+
+      {/* 제시문 있는 경우 */}
+      <QuestionCard 
+        labelType="intermediate" 
+        text="문제 제목" 
+        favoriteType={favoriteType}
+        onFavoriteClick={() => setFavoriteType(prev => prev === "default" ? "select" : "default")}
+        passage="제시문 내용"
+        questionPurposeText="질문 목적 설명 텍스트"
+        answerPointText="답변 포인트 설명 텍스트"
+        answerText="모범 답변 내용"
+        answerCriteriaText="모범 답변 기준 설명"
+        onAnswerButtonClick={() => console.log('모범 답변 확인하기 클릭')}
+      />
+    </>
+  );
+}
+```
+
+### Props
+
+| Prop 이름 | 타입 | 설명 | 필수 여부 |
+| --- | --- | --- | --- |
+| `labelType` | `"basic" \| "intermediate" \| "advanced" \| "good" \| "normal" \| "improve"` | 문제 난이도 라벨 타입 | Yes |
+| `text` | `string` | 문제 제목 텍스트 | Yes |
+| `favoriteType` | `"default" \| "select"` | 즐겨찾기 상태 | No (기본값: "default") |
+| `onFavoriteClick` | `() => void` | 즐겨찾기 클릭 핸들러 | No |
+| `passage` | `string` | 제시문 내용 (있으면 자동으로 표시) | No |
+| `questionPurposeText` | `string` | 질문 목적 설명 텍스트 | Yes |
+| `answerPointText` | `string` | 답변 포인트 설명 텍스트 | Yes |
+| `answerText` | `string` | 모범 답변 내용 (버튼 클릭 시 표시) | No |
+| `answerCriteriaText` | `string` | 모범 답변 기준 설명 (답변 표시 시 함께 표시) | No |
+| `onAnswerButtonClick` | `() => void` | 모범 답변 확인하기 버튼 클릭 핸들러 | No |
+
+### 주요 기능
+
+- **제시문 표시**: `passage` prop이 있으면 자동으로 제시문 영역이 표시됩니다.
+- **모범 답변 표시**: "모범 답변 확인하기" 버튼을 클릭하면 답변이 표시되고 버튼이 disabled 상태로 변경됩니다.
+- **즐겨찾기**: 각 카드마다 독립적으로 즐겨찾기 상태를 관리할 수 있습니다.
