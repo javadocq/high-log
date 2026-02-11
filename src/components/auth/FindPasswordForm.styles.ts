@@ -3,20 +3,14 @@ import styled from "styled-components";
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  padding: 0 18px;
   box-sizing: border-box;
 `;
 
-export const SignUpTitle = styled.h4`
+export const FormTitle = styled.h4`
   ${({ theme }) => theme.typography.head.H4};
   line-height: 32px;
   color: ${({ theme }) => theme.colors.grayScale["00"]};
-  margin: 0 0 12px 0;
-`;
-
-export const InputSection = styled.div`
-  display: flex;
-  flex-direction: column;
+  margin: 0 0 35px 0;
 `;
 
 export const FieldWrapper = styled.div<{ $gap: number }>`
@@ -25,7 +19,7 @@ export const FieldWrapper = styled.div<{ $gap: number }>`
   gap: ${({ $gap }) => $gap}px;
 
   &:not(:last-child) {
-    margin-bottom: 13px;
+    margin-bottom: 14px;
   }
 `;
 
@@ -41,45 +35,75 @@ export const AuthInput = styled.input`
   background-color: ${({ theme }) => theme.colors.grayScale["11"]};
   border: 1px solid ${({ theme }) => theme.colors.secondary["07"]};
   border-radius: 12px;
-  ${({ theme }) => theme.typography.body.S1};
+  ${({ theme }) => theme.typography.body.S0};
   line-height: 20px;
   color: ${({ theme }) => theme.colors.grayScale["00"]};
 
   &::placeholder {
-    ${({ theme }) => theme.typography.body.S1};
+    ${({ theme }) => theme.typography.body.S0};
     line-height: 20px;
     color: ${({ theme }) => theme.colors.grayScale["05"]};
   }
-`;
 
-export const CheckboxSection = styled.div`
-  margin-top: 22px;
-`;
-
-export const CheckboxRow = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  &:not(:last-child) {
-    margin-bottom: 8px;
+  &:disabled {
+    cursor: default;
+    opacity: 1;
   }
 `;
 
-export const CheckboxLeft = styled.div`
+export const EmailInputRow = styled.div`
   display: flex;
-  align-items: center;
-  gap: 9px;
+  align-items: flex-start;
+  gap: 8px;
+
+  input {
+    flex: 1;
+    min-width: 0;
+  }
 `;
 
-export const CheckboxText = styled.span`
-  ${({ theme }) => theme.typography.body.S1};
-  color: ${({ theme }) => theme.colors.grayScale["00"]};
+export const OpenModalButton = styled.button.attrs({ type: "button" })`
+  width: 120px;
+  padding: 8px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 8px;
+  background-color: ${({ theme }) => theme.colors.secondary["08"]};
+  color: ${({ theme }) => theme.colors.secondary["05"]};
+  ${({ theme }) => theme.typography.body.M2};
+  cursor: pointer;
+  flex-shrink: 0;
+`;
+
+export const BackRow = styled.div`
+  margin-top: 16px;
+`;
+
+export const AuthUnderBarButton = styled.button`
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: ${({ theme }) => theme.colors.secondary["01"]};
+  ${({ theme }) => theme.typography.body.S0};
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-skip-ink: none;
 `;
 
 export const SubmitButtonWrapper = styled.div`
-  margin-top: 15px;
-  margin-bottom: 24px;
+  margin-top: 25px;
+  width: 100%;
+`;
+
+export const VerifyCodeFieldWrapper = styled(FieldWrapper)`
+  margin-bottom: 0;
+`;
+
+export const PasswordChangeButtonWrapper = styled.div`
+  margin-top: 27px;
   width: 100%;
 `;
 
@@ -96,16 +120,4 @@ export const AuthPrimaryButton = styled.button`
   ${({ theme }) => theme.typography.body.M2};
   cursor: pointer;
   box-sizing: border-box;
-`;
-
-export const AuthUnderBarButton = styled.button`
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  color: ${({ theme }) => theme.colors.secondary["01"]};
-  ${({ theme }) => theme.typography.body.S0};
-  text-decoration-line: underline;
-  text-decoration-style: solid;
-  text-decoration-skip-ink: none;
 `;

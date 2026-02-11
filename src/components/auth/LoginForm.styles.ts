@@ -24,7 +24,7 @@ export const FieldWrapper = styled.div<{ $gap: number }>`
 `;
 
 export const Label = styled.label`
-  ${({ theme }) => theme.typography.body.S2};
+  ${({ theme }) => theme.typography.body.S1};
   color: ${({ theme }) => theme.colors.grayScale["00"]};
 `;
 
@@ -36,10 +36,12 @@ export const AuthInput = styled.input`
   border: 1px solid ${({ theme }) => theme.colors.secondary["07"]};
   border-radius: 12px;
   ${({ theme }) => theme.typography.body.S0};
+  line-height: 20px;
   color: ${({ theme }) => theme.colors.grayScale["00"]};
 
   &::placeholder {
     ${({ theme }) => theme.typography.body.S0};
+    line-height: 20px;
     color: ${({ theme }) => theme.colors.grayScale["05"]};
   }
 `;

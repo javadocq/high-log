@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import App from '@/App';
 import Home from '@/pages/Home';
 import AuthPage from '@/pages/AuthPage';
+import FindPasswordPage from '@/pages/AuthPage/FindPasswordPage';
 import Guide from '@/pages/Guide';
 import InterviewQuestions from '@/pages/InterviewQuestions';
 import InterviewPractice from '@/pages/InterviewPractice';
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: 'auth',
         element: <AuthPage />,
+      },
+      {
+        path: 'auth/find-password',
+        element: <FindPasswordPage />,
       },
       {
         path: 'guide',

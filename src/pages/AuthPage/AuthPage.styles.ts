@@ -11,6 +11,7 @@ export const Container = styled.div`
 
 export const ContentWrapper = styled.div`
   display: flex;
+  align-items: flex-start;
   gap: 24px;
 `;
 
@@ -24,19 +25,21 @@ const FrameBase = styled.div`
 export const LeftFrame = styled(FrameBase)`
   flex: 690 0 690px;
   min-width: 690px;
-  height: 650px;
 `;
 
 export const FormFrame = styled(FrameBase)`
   flex: 486 0 486px;
   min-width: 486px;
-  height: 725px;
+  min-height: 725px;
 `;
 
 export const FormFrameContent = styled.div`
   width: 100%;
-  height: 100%;
   box-sizing: border-box;
+`;
+
+export const FormFrameContentWithPadding = styled(FormFrameContent)`
+  padding: 128px 18px 0 18px;
 `;
 
 export const TabWrapper = styled.div`
