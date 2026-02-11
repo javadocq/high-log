@@ -18,9 +18,9 @@ export default function Footer() {
           </S.TextParagraph>
           <S.TextParagraph>인천광역시 청능대로 581, 503-562호</S.TextParagraph>
           <S.TextParagraph>
-            <S.Link to="">개인정보 처리방침</S.Link>
+            <S.Link to="/privacy">개인정보 처리방침</S.Link>
             {" | "}
-            <S.Link to="">이용약관</S.Link>
+            <S.Link to="/term">이용약관</S.Link>
           </S.TextParagraph>
         </S.LeftSection>
         <S.RightSection>
