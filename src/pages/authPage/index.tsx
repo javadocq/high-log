@@ -3,7 +3,7 @@ import AuthDescription from "@/features/auth/AuthDescription";
 import LoginForm from "@/features/auth/LoginForm";
 import SignUpForm from "@/features/auth/SignUpForm";
 import Tab from "@/components/tab/Tab";
-import * as S from "@/pages/AuthPage/AuthPage.styles";
+import * as S from "@/pages/authPage/AuthPage.styles";
 
 type AuthMode = "login" | "signup";
 
