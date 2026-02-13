@@ -1,8 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from '@/App';
 import Home from '@/pages/home';
-import AuthPage from '@/pages/AuthPage';
-import FindPasswordPage from '@/pages/AuthPage/FindPasswordPage';
+import AuthPage from '@/pages/authPage';
+import FindPasswordPage from '@/pages/authPage/findPasswordPage';
 import Guide from '@/pages/guide';
 import InterviewQuestions from '@/pages/interviewQuestions';
 import InterviewPractice from '@/pages/interviewPractice';

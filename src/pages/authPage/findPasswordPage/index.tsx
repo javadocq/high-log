@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Modal from "@/components/modal/Modal";
 import AuthDescription from "@/features/auth/AuthDescription";
 import FindPasswordForm from "@/features/auth/FindPasswordForm";
-import * as S from "@/pages/AuthPage/AuthPage.styles";
+import * as S from "@/pages/authPage/AuthPage.styles";
 
 export default function FindPasswordPage() {
   const navigate = useNavigate();
