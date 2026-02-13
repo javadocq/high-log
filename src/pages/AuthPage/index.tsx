@@ -1,7 +1,7 @@
 import { useState } from "react";
-import AuthDescription from "@/components/auth/AuthDescription";
-import LoginForm from "@/components/auth/LoginForm";
-import SignUpForm from "@/components/auth/SignUpForm";
+import AuthDescription from "@/features/auth/AuthDescription";
+import LoginForm from "@/features/auth/LoginForm";
+import SignUpForm from "@/features/auth/SignUpForm";
 import Tab from "@/components/tab/Tab";
 import * as S from "@/pages/AuthPage/AuthPage.styles";
 

@@ -33,6 +33,13 @@ export const FeatureBlock = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.secondary["07"]};
   border-radius: 12px;
   box-sizing: border-box;
+`;
+
+export const FeatureBlockContent = styled.div`
+  padding: 19px 51px 14px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
   gap: 6px;
 `;
 
@@ -40,15 +47,12 @@ export const FeatureBlockTitle = styled.p`
   ${({ theme }) => theme.typography.body.S2};
   color: ${({ theme }) => theme.colors.grayScale["00"]};
   margin: 0;
-  padding: 19px 0 0 51px;
-  box-sizing: border-box;
 `;
 
 export const FeatureBlockDescription = styled.p`
   ${({ theme }) => theme.typography.body.S0};
   color: ${({ theme }) => theme.colors.secondary["05"]};
-  padding: 0 0 14px 53px;
-  box-sizing: border-box;
+  margin: 0;
 `;
 
 export const ButtonWrapper = styled.div`

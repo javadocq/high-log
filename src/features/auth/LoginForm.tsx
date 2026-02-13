@@ -2,14 +2,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CheckBox from "@/components/input/CheckBox";
 import PasswordInput from "@/components/input/PasswordInput";
-import * as S from "@/components/auth/LoginForm.styles";
+import * as S from "@/features/auth/LoginForm.styles";
 
 interface LoginFormProps {
-  onSubmit: (data: {
-    email: string;
-    password: string;
-    keepLogin: boolean;
-  }) => void;
+  onSubmit: (data: { email: string; password: string; keepLogin: boolean }) => void;
 }
 
 export default function LoginForm({ onSubmit }: LoginFormProps) {
@@ -49,14 +45,14 @@ export default function LoginForm({ onSubmit }: LoginFormProps) {
       </S.FieldWrapper>
       <S.KeepLoginRow>
         <S.KeepLoginLeft>
-          <CheckBox
-            isChecked={keepLogin}
-            onClick={() => setKeepLogin((prev) => !prev)}
-          />
+          <CheckBox isChecked={keepLogin} onClick={() => setKeepLogin((prev) => !prev)} />
           <S.KeepLoginText>로그인 상태 유지</S.KeepLoginText>
         </S.KeepLoginLeft>
-        <S.AuthUnderBarButton type="button" onClick={() => navigate("/auth/find-password")}>
-          비밀번호 찾기
+        <S.AuthUnderBarButton
+          type="button"
+          onClick={() => navigate("/auth/find-password")}
+        >
+          회원가입
         </S.AuthUnderBarButton>
       </S.KeepLoginRow>
       <S.SubmitButtonWrapper>

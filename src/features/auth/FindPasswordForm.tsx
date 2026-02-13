@@ -1,6 +1,6 @@
 import { useState } from "react";
 import PasswordInput from "@/components/input/PasswordInput";
-import * as S from "@/components/auth/FindPasswordForm.styles";
+import * as S from "@/features/auth/FindPasswordForm.styles";
 
 type FindPasswordStep = "initial" | "newPassword";
 

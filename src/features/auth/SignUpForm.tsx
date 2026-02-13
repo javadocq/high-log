@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import CheckBox from "@/components/input/CheckBox";
 import PasswordInput from "@/components/input/PasswordInput";
-import * as S from "@/components/auth/SignUpForm.styles";
+import { SIGN_UP_AGREEMENT_ITEMS } from "@/constants/auth";
+import * as S from "@/features/auth/SignUpForm.styles";
 
 interface SignUpFormProps {
   onSubmit: (data: {
@@ -18,13 +20,20 @@ interface SignUpFormProps {
 }
 
 export default function SignUpForm({ onSubmit }: SignUpFormProps) {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
-  const [agree1, setAgree1] = useState(false);
-  const [agree2, setAgree2] = useState(false);
-  const [agree3, setAgree3] = useState(false);
+  const [agreements, setAgreements] = useState({
+    이용약관: false,
+    개인정보처리방침: false,
+    만14세이상: false,
+  });
+
+  const handleAgreementChange = (key: keyof typeof agreements) => {
+    setAgreements((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,11 +42,7 @@ export default function SignUpForm({ onSubmit }: SignUpFormProps) {
       email,
       password,
       passwordConfirm,
-      agreements: {
-        이용약관: agree1,
-        개인정보처리방침: agree2,
-        만14세이상: agree3,
-      },
+      agreements,
     });
   };
 
@@ -89,35 +94,25 @@ export default function SignUpForm({ onSubmit }: SignUpFormProps) {
         </S.FieldWrapper>
       </S.InputSection>
       <S.CheckboxSection>
-        <S.CheckboxRow>
-          <S.CheckboxLeft>
-            <CheckBox
-              isChecked={agree1}
-              onClick={() => setAgree1((prev) => !prev)}
-            />
-            <S.CheckboxText>(필수) 이용약관 동의</S.CheckboxText>
-          </S.CheckboxLeft>
-          <S.AuthUnderBarButton type="button">약관 보기</S.AuthUnderBarButton>
-        </S.CheckboxRow>
-        <S.CheckboxRow>
-          <S.CheckboxLeft>
-            <CheckBox
-              isChecked={agree2}
-              onClick={() => setAgree2((prev) => !prev)}
-            />
-            <S.CheckboxText>(필수) 개인정보 처리방침 동의</S.CheckboxText>
-          </S.CheckboxLeft>
-          <S.AuthUnderBarButton type="button">정책 보기</S.AuthUnderBarButton>
-        </S.CheckboxRow>
-        <S.CheckboxRow>
-          <S.CheckboxLeft>
-            <CheckBox
-              isChecked={agree3}
-              onClick={() => setAgree3((prev) => !prev)}
-            />
-            <S.CheckboxText>(필수) 만 14세 이상입니다.</S.CheckboxText>
-          </S.CheckboxLeft>
-        </S.CheckboxRow>
+        {SIGN_UP_AGREEMENT_ITEMS.map((item) => (
+          <S.CheckboxRow key={item.key}>
+            <S.CheckboxLeft>
+              <CheckBox
+                isChecked={agreements[item.key]}
+                onClick={() => handleAgreementChange(item.key)}
+              />
+              <S.CheckboxText>{item.label}</S.CheckboxText>
+            </S.CheckboxLeft>
+            {item.buttonText && item.buttonPath && (
+              <S.AuthUnderBarButton
+                type="button"
+                onClick={() => navigate(item.buttonPath!)}
+              >
+                {item.buttonText}
+              </S.AuthUnderBarButton>
+            )}
+          </S.CheckboxRow>
+        ))}
       </S.CheckboxSection>
       <S.SubmitButtonWrapper>
         <S.AuthPrimaryButton type="submit">회원가입</S.AuthPrimaryButton>

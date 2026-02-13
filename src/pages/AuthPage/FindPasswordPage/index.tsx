@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Modal from "@/components/modal/Modal";
-import AuthDescription from "@/components/auth/AuthDescription";
-import FindPasswordForm from "@/components/auth/FindPasswordForm";
+import AuthDescription from "@/features/auth/AuthDescription";
+import FindPasswordForm from "@/features/auth/FindPasswordForm";
 import * as S from "@/pages/AuthPage/AuthPage.styles";
 
 export default function FindPasswordPage() {

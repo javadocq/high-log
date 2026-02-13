@@ -75,6 +75,7 @@ export const OpenModalButton = styled.button.attrs({ type: "button" })`
   ${({ theme }) => theme.typography.body.M2};
   cursor: pointer;
   flex-shrink: 0;
+  margin-top: 3px;
 `;
 
 export const BackRow = styled.div`
