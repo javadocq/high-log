@@ -1,4 +1,4 @@
-import CreateQuestionCarousel from "@/features/interviewQuestion/CreateQuestionCarousel/CreateQuestionCarousel";
+import CreateQuestionCarousel from "@/features/interviewQuestion/createQuestionCarousel/CreateQuestionCarousel";
 import ArrowRight from "@/assets/icons/arrow_right.svg?react";
 import theme from "@/styles/theme";
 import * as S from "./CreateQuestions.styles";

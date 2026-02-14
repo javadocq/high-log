@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import * as S from "./CreateQuestions.styles";
-import CreateQuestionFormBox from "@/features/interviewQuestion/CreateQuestionFormBox/CreateQuestionFormBox";
+import CreateQuestionFormBox from "@/features/interviewQuestion/createQuestionFormBox/CreateQuestionFormBox";
 import type { CreateQuestionFormData } from "@/features/interviewQuestion/types/createQuestion";
 
 interface CreateQuestionsCreateProps {
