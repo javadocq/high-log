@@ -1,5 +1,5 @@
 import { useState } from "react";
-import * as S from "./CreateQuestionFormBox.styles";
+import * as S from "@/features/interviewQuestion/createQuestionFormBox/CreateQuestionFormBox.styles";
 import { DefaultButton } from "@/components/button/Button";
 import XIcon from "@/assets/icons/x.svg?react";
 import DropDown from "@/components/input/DropDown";

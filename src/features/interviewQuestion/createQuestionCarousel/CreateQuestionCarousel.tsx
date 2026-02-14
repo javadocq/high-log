@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback, useEffect } from "react";
-import * as S from "./CreateQuestionCarousel.styles";
+import * as S from "@/features/interviewQuestion/createQuestionCarousel/CreateQuestionCarousel.styles";
 
 import createQuestion1 from "@/assets/images/create_question_1.png";
 import createQuestion2 from "@/assets/images/create_question_2.png";
@@ -25,10 +25,7 @@ export default function CreateQuestionCarousel() {
   const handleMouseLeave = useCallback(() => {
     if (isDragging) {
       const deltaX = dragOffsetRef.current;
-      if (
-        deltaX < -DRAG_THRESHOLD &&
-        currentIndex < CAROUSEL_IMAGES.length - 1
-      ) {
+      if (deltaX < -DRAG_THRESHOLD && currentIndex < CAROUSEL_IMAGES.length - 1) {
         setCurrentIndex((prev) => prev + 1);
       } else if (deltaX > DRAG_THRESHOLD && currentIndex > 0) {
         setCurrentIndex((prev) => prev - 1);
@@ -41,10 +38,7 @@ export default function CreateQuestionCarousel() {
 
   const endDrag = useCallback(() => {
     const deltaX = dragOffsetRef.current;
-    if (
-      deltaX < -DRAG_THRESHOLD &&
-      currentIndex < CAROUSEL_IMAGES.length - 1
-    ) {
+    if (deltaX < -DRAG_THRESHOLD && currentIndex < CAROUSEL_IMAGES.length - 1) {
       setCurrentIndex((prev) => prev + 1);
     } else if (deltaX > DRAG_THRESHOLD && currentIndex > 0) {
       setCurrentIndex((prev) => prev - 1);
@@ -62,7 +56,7 @@ export default function CreateQuestionCarousel() {
         const deltaX = e.clientX - startXRef.current;
         const clampedDelta = Math.max(
           -containerWidth * 0.5,
-          Math.min(containerWidth * 0.5, deltaX)
+          Math.min(containerWidth * 0.5, deltaX),
         );
         dragOffsetRef.current = clampedDelta;
         setDragOffset(clampedDelta);
@@ -89,11 +83,7 @@ export default function CreateQuestionCarousel() {
         <S.CarouselTrack $currentIndex={currentIndex} $dragOffset={dragOffset}>
           {CAROUSEL_IMAGES.map((img, index) => (
             <S.CarouselSlide key={index}>
-              <img
-                src={img}
-                alt={`면접 질문 생성 단계 ${index + 1}`}
-                draggable={false}
-              />
+              <img src={img} alt={`면접 질문 생성 단계 ${index + 1}`} draggable={false} />
             </S.CarouselSlide>
           ))}
         </S.CarouselTrack>

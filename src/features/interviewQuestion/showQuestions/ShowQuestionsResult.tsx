@@ -1,6 +1,7 @@
 import { useState } from "react";
-import * as S from "./ShowQuestions.styles";
+import * as S from "@/features/interviewQuestion/showQuestions/ShowQuestions.styles";
 import QuestionCard, { type QuestionCardProps } from "@/components/card/QuestionCard";
+import Title from "@/components/title/Title";
 
 const TABS = [
   "출결 상황",
@@ -13,8 +14,7 @@ const TABS = [
 type TabType = (typeof TABS)[number];
 
 const AI_BOOKSTORE_PASSAGE =
-  "최근 한 대형 서점이 AI를 활용한 도서 추천 시스템을 도입했다. 이 시스템은 고객의 구매 이력, 검색 기록, 체류 시간 등을 분석하여 개인 맞춤형 도서를 추천한다. 실제로 매출은 30% 증가했지만 일부 비평가들은 \"AI가 추천하는 책만 읽게 되면 사고의 다양성이 줄어들고 우연히 새로운 분야의 책을 발견할 기회가 사라진다\"고 우려를 표명했다. 반면 서점 측은 \"고객이 원하는 책을 더 쉽게 찾도록 돕는 것일 뿐\"이라고 반박했다.";
-
+  '최근 한 대형 서점이 AI를 활용한 도서 추천 시스템을 도입했다. 이 시스템은 고객의 구매 이력, 검색 기록, 체류 시간 등을 분석하여 개인 맞춤형 도서를 추천한다. 실제로 매출은 30% 증가했지만 일부 비평가들은 "AI가 추천하는 책만 읽게 되면 사고의 다양성이 줄어들고 우연히 새로운 분야의 책을 발견할 기회가 사라진다"고 우려를 표명했다. 반면 서점 측은 "고객이 원하는 책을 더 쉽게 찾도록 돕는 것일 뿐"이라고 반박했다.';
 const MOCK_ANSWER_TEXT =
   "수학 성적이 낮았던 이유를 분석해 보니 개념 이해가 부족했습니다. 매일 1시간씩 기초 개념을 복습하고, 오답 노트를 작성하며 약점을 보완했어요. 2학기에는 성적이 한 등급 올랐습니다.";
 
@@ -93,15 +93,14 @@ export default function ShowQuestionsResult() {
     <>
       <S.HeaderSection>
         <S.TitleWrapper>
-          <S.TitleAccentBar />
-          <S.Title>질문 생성</S.Title>
+          <Title text="질문 생성" />
         </S.TitleWrapper>
         <S.Description>
           하이로그의 면접 예상 질문은 대입 전형용 생활기록부를 기반으로
         </S.Description>
         <S.Description>
-          총 5개 영역(출결, 성적, 교과 및 세부능력 특기사항, 창의적 체험활동,
-          행동특성 및 종합의견)의 예상 질문을 받아볼 수 있어요
+          총 5개 영역(출결, 성적, 교과 및 세부능력 특기사항, 창의적 체험활동, 행동특성 및
+          종합의견)의 예상 질문을 받아볼 수 있어요
         </S.Description>
       </S.HeaderSection>
       <S.TabContainer>

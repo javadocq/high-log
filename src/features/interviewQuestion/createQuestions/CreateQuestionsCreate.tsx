@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import * as S from "./CreateQuestions.styles";
+import * as S from "@/features/interviewQuestion/createQuestions/CreateQuestions.styles";
 import CreateQuestionFormBox from "@/features/interviewQuestion/createQuestionFormBox/CreateQuestionFormBox";
+import Title from "@/components/title/Title";
 import type { CreateQuestionFormData } from "@/features/interviewQuestion/types/createQuestion";
 
 interface CreateQuestionsCreateProps {
@@ -21,8 +22,7 @@ export default function CreateQuestionsCreate({
     <S.ContentWrapper>
       <S.CreateHeaderSection>
         <S.TitleWrapper>
-          <S.TitleAccentBar />
-          <S.Title>질문 생성</S.Title>
+          <Title text="질문 생성" />
         </S.TitleWrapper>
         <S.Description>
           맞춤형 면접 질문을 위한 지원 정보를 상세하게 입력해주세요

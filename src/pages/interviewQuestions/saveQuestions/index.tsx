@@ -1,4 +1,5 @@
-import * as S from "./saveQuestions.styles";
+import * as S from "@/pages/interviewQuestions/saveQuestions/saveQuestions.styles";
+import Title from "@/components/title/Title";
 import SaveQuestionsEmpty from "@/features/interviewQuestion/saveQuestions/SaveQuestionsEmpty";
 import SaveQuestionsList from "@/features/interviewQuestion/saveQuestions/SaveQuestionsList";
 
@@ -10,8 +11,7 @@ export default function SaveQuestions() {
       <S.ContentWrapper>
         <S.CreateHeaderSection>
           <S.TitleWrapper>
-            <S.TitleAccentBar />
-            <S.Title>질문 보관함</S.Title>
+            <Title text="질문 보관함" />
           </S.TitleWrapper>
         </S.CreateHeaderSection>
         {hasQuestions ? <SaveQuestionsList /> : <SaveQuestionsEmpty />}

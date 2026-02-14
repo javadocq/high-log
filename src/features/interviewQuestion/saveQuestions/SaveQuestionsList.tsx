@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import * as S from "./SaveQuestionsList.styles";
+import * as S from "@/features/interviewQuestion/saveQuestions/SaveQuestionsList.styles";
 import QuestionCard, { type QuestionCardProps } from "@/components/card/QuestionCard";
 import ListFilter from "@/components/filter/ListFilter";
 import Pagination from "@/components/common/pagination/Pagination";

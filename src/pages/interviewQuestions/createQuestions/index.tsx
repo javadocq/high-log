@@ -3,7 +3,7 @@ import {
   CreateQuestionsMain,
   CreateQuestionsCreate,
 } from "@/features/interviewQuestion/createQuestions";
-import * as S from "./createQuestionsPage.styles.ts";
+import * as S from "@/pages/interviewQuestions/createQuestions/createQuestionsPage.styles";
 
 type CreateStep = "main" | "create";
 

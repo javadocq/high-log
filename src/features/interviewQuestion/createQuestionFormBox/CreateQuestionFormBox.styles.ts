@@ -30,6 +30,23 @@ export const SchoolRecordRow = styled.div`
 export const SchoolRecordDropDownWrapper = styled.div`
   flex: 1;
   min-width: 0;
+
+  & > div {
+    position: relative;
+  }
+  & > div > ul {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: 4px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    background-color: ${({ theme }) => theme.colors.grayScale["09"]};
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    box-sizing: border-box;
+  }
 `;
 
 export const FormFieldGroups = styled.div`
@@ -133,6 +150,23 @@ export const DropDownGroup = styled.div`
   display: flex;
   align-items: center;
   gap: 40px;
+
+  & > div {
+    position: relative;
+  }
+  & > div > ul {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: 4px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    background-color: ${({ theme }) => theme.colors.grayScale["09"]};
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    box-sizing: border-box;
+  }
 `;
 
 export const ApplicationTypeSection = styled(FormField)`

@@ -1,19 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import * as S from "./loadingQuestions.styles";
+import * as S from "@/pages/interviewQuestions/loadingQuestions/loadingQuestions.styles";
 import QuestionGeneratingLoading from "@/components/loading/QuestionGeneratingLoading";
 import LoadingCard from "@/components/card/LoadingCard";
 
 export default function LoadingQuestions() {
   const navigate = useNavigate();
   const [percent, setPercent] = useState(0);
-  const [isComplete, setIsComplete] = useState(false);
+  const hasNavigatedRef = useRef(false);
+
+  const isComplete = percent >= 100;
 
   useEffect(() => {
-    if (percent >= 100) {
-      setIsComplete(true);
-      return;
-    }
+    if (percent >= 100) return;
 
     const timer = setInterval(() => {
       setPercent((prev) => Math.min(prev + 2, 100));
@@ -23,9 +22,9 @@ export default function LoadingQuestions() {
   }, [percent]);
 
   useEffect(() => {
-    if (isComplete) {
-      navigate("/question/show");
-    }
+    if (!isComplete || hasNavigatedRef.current) return;
+    hasNavigatedRef.current = true;
+    navigate("/question/show");
   }, [isComplete, navigate]);
 
   return (

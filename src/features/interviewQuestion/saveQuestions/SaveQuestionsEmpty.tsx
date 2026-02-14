@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import NoArchiveIcon from "@/assets/icons/NoArchive.svg?react";
 import { DefaultButton } from "@/components/button/Button";
-import * as S from "./SaveQuestionsEmpty.styles";
+import * as S from "@/features/interviewQuestion/saveQuestions/SaveQuestionsEmpty.styles";
 
 export default function SaveQuestionsEmpty() {
   const navigate = useNavigate();
