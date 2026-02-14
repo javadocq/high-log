@@ -6,11 +6,13 @@ import FindPasswordPage from '@/pages/authPage/findPasswordPage';
 import Guide from '@/pages/guide';
 import InterviewQuestions from '@/pages/interviewQuestions';
 import InterviewPractice from '@/pages/interviewPractice';
-import RecordManagement from '@/pages/recordManagement';
 import MyPage from '@/pages/myPage';
 import Support from '@/pages/support';
 import Privacy from '@/pages/privacy';
 import Term from '@/pages/term';
+import RecordManagement from '@/pages/recordManagement';
+import RecordUpload from '@/pages/recordManagement/upload';
+import RecordDetail from '@/pages/recordManagement/detail';
 
 const router = createBrowserRouter([
   {
@@ -50,8 +52,16 @@ const router = createBrowserRouter([
         element: <InterviewPractice />,
       },
       {
-        path: 'record/management',
-        element: <RecordManagement />,
+        path: 'record_management',
+        element: <RecordManagement />
+      },
+      {
+        path: 'record_management/upload',
+        element: <RecordUpload />
+      },
+      {
+        path: 'record_management/:id',
+        element: <RecordDetail />
       },
       {
         path: 'mypage',
