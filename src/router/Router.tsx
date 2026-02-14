@@ -7,6 +7,7 @@ import Guide from "@/pages/guide";
 import CreateQuestions from "@/pages/interviewQuestions/createQuestions";
 import LoadingQuestions from "@/pages/interviewQuestions/loadingQuestions";
 import ShowQuestions from "@/pages/interviewQuestions/showQuestions";
+import SaveQuestions from "@/pages/interviewQuestions/saveQuestions";
 import InterviewPractice from "@/pages/interviewPractice";
 import RecordManagement from "@/pages/recordManagement";
 import MyPage from "@/pages/myPage";
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
       {
         path: "question/show",
         element: <ShowQuestions />,
+      },
+      {
+        path: "question/storage",
+        element: <SaveQuestions />,
       },
       {
         path: "interview/practice",
