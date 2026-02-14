@@ -28,3 +28,10 @@ export const QuestionCardWrapper = styled.div`
     width: 100%;
   }
 `;
+
+export const PaginationWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 96px;
+  width: 100%;
+`;
