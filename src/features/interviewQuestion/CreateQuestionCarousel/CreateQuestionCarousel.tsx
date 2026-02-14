@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback, useEffect } from "react";
-import * as S from "@/features/interviewQuestion/CreateQuestionCarousel/CreateQuestionCarousel.styles";
+import * as S from "./CreateQuestionCarousel.styles";
 
 import createQuestion1 from "@/assets/images/create_question_1.png";
 import createQuestion2 from "@/assets/images/create_question_2.png";

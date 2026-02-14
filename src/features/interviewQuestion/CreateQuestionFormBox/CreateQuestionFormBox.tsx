@@ -1,7 +1,7 @@
 import { useState } from "react";
-import * as S from "@/features/interviewQuestion/CreateQuestionFormBox/CreateQuestionFormBox.styles";
+import * as S from "./CreateQuestionFormBox.styles";
 import { DefaultButton } from "@/components/button/Button";
-import CreateQuestionTitleInput from "@/features/interviewQuestion/CreateQuestionTitleInput/index";
+import XIcon from "@/assets/icons/x.svg?react";
 import DropDown from "@/components/input/DropDown";
 import RadioBox from "@/components/input/RadioBox";
 import type { CreateQuestionFormData } from "@/features/interviewQuestion/types/createQuestion";
@@ -55,11 +55,22 @@ export default function CreateQuestionFormBox({ onSubmit }: CreateQuestionFormBo
           <S.FormFieldRow>
             <S.FormFieldRowLabel>제목</S.FormFieldRowLabel>
             <S.FormFieldRowContent>
-              <CreateQuestionTitleInput
-                value={title}
-                onChange={setTitle}
-                placeholder="질문 기록 저장을 위한 제목을 입력해 주세요 ex) 한양대 면접용"
-              />
+              <S.TitleInputWrapper>
+                <S.TitleInputField
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  placeholder="질문 기록 저장을 위한 제목을 입력해 주세요 ex) 한양대 면접용"
+                />
+                {title && (
+                  <XIcon
+                    width={24}
+                    height={24}
+                    stroke="#737373"
+                    onClick={() => setTitle("")}
+                    style={{ cursor: "pointer" }}
+                  />
+                )}
+              </S.TitleInputWrapper>
               <S.TitleInputCaption>
                 제목은 최대 28자까지 입력할 수 있어요
               </S.TitleInputCaption>

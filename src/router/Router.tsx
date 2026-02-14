@@ -1,20 +1,22 @@
-import { createBrowserRouter } from 'react-router-dom';
-import App from '@/App';
-import Home from '@/pages/home';
-import AuthPage from '@/pages/authPage';
-import FindPasswordPage from '@/pages/authPage/findPasswordPage';
-import Guide from '@/pages/guide';
-import CreateQuestions from '@/pages/interviewQuestions/createQuestions';
-import InterviewPractice from '@/pages/interviewPractice';
-import RecordManagement from '@/pages/recordManagement';
-import MyPage from '@/pages/myPage';
-import Support from '@/pages/support';
-import Privacy from '@/pages/privacy';
-import Term from '@/pages/term';
+import { createBrowserRouter } from "react-router-dom";
+import App from "@/App";
+import Home from "@/pages/home";
+import AuthPage from "@/pages/authPage";
+import FindPasswordPage from "@/pages/authPage/findPasswordPage";
+import Guide from "@/pages/guide";
+import CreateQuestions from "@/pages/interviewQuestions/createQuestions";
+import LoadingQuestions from "@/pages/interviewQuestions/loadingQuestions";
+import ShowQuestions from "@/pages/interviewQuestions/showQuestions";
+import InterviewPractice from "@/pages/interviewPractice";
+import RecordManagement from "@/pages/recordManagement";
+import MyPage from "@/pages/myPage";
+import Support from "@/pages/support";
+import Privacy from "@/pages/privacy";
+import Term from "@/pages/term";
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <App />,
     children: [
       {
@@ -22,43 +24,51 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: '/privacy',
+        path: "/privacy",
         element: <Privacy />,
       },
       {
-        path: '/term',
+        path: "/term",
         element: <Term />,
       },
       {
-        path: 'auth',
+        path: "auth",
         element: <AuthPage />,
       },
       {
-        path: 'auth/find-password',
+        path: "auth/find-password",
         element: <FindPasswordPage />,
       },
       {
-        path: 'guide',
+        path: "guide",
         element: <Guide />,
       },
       {
-        path: 'question',
+        path: "question",
         element: <CreateQuestions />,
       },
       {
-        path: 'interview/practice',
+        path: "question/loading",
+        element: <LoadingQuestions />,
+      },
+      {
+        path: "question/show",
+        element: <ShowQuestions />,
+      },
+      {
+        path: "interview/practice",
         element: <InterviewPractice />,
       },
       {
-        path: 'record/management',
+        path: "record/management",
         element: <RecordManagement />,
       },
       {
-        path: 'mypage',
+        path: "mypage",
         element: <MyPage />,
       },
       {
-        path: 'support',
+        path: "support",
         element: <Support />,
       },
     ],

@@ -79,6 +79,32 @@ export const FormFieldRowContent = styled.div`
   gap: 4px;
 `;
 
+export const TitleInputWrapper = styled.div`
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  padding: 8px 16px;
+  align-items: center;
+  gap: 75px;
+  border-radius: 8px;
+  background-color: ${({ theme }) => theme.colors.grayScale["09"]};
+  box-sizing: border-box;
+`;
+
+export const TitleInputField = styled.input`
+  flex: 1;
+  min-width: 0;
+  ${({ theme }) => theme.typography.body.M0};
+  border: none;
+  outline: none;
+  background-color: ${({ theme }) => theme.colors.grayScale["09"]};
+  color: ${({ theme }) => theme.colors.grayScale["00"]};
+
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.grayScale["05"]};
+  }
+`;
+
 export const TitleInputCaption = styled.span`
   color: ${({ theme }) => theme.colors.grayScale["04"]};
   ${({ theme }) => theme.typography.caption.C0};
