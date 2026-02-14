@@ -4,7 +4,7 @@ import Home from '@/pages/home';
 import AuthPage from '@/pages/authPage';
 import FindPasswordPage from '@/pages/authPage/findPasswordPage';
 import Guide from '@/pages/guide';
-import InterviewQuestions from '@/pages/interviewQuestions';
+import CreateQuestions from '@/pages/interviewQuestions/createQuestions';
 import InterviewPractice from '@/pages/interviewPractice';
 import RecordManagement from '@/pages/recordManagement';
 import MyPage from '@/pages/myPage';
@@ -42,8 +42,8 @@ const router = createBrowserRouter([
         element: <Guide />,
       },
       {
-        path: 'interview/questions',
-        element: <InterviewQuestions />,
+        path: 'question',
+        element: <CreateQuestions />,
       },
       {
         path: 'interview/practice',
