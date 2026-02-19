@@ -25,3 +25,16 @@ export interface RegisterRecordSSEEvent {
   type: "processing" | "complete";
   progress: number;
 }
+
+export interface QuestionSet {
+  id: number;
+  title: string;
+}
+
+export interface RecordDetail {
+  id: number;
+  title: string;
+  status: "READY" | "PROCESSING" | "FAILED";
+  createdAt: string;
+  questionSets: QuestionSet[];
+}
