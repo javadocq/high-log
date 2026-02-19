@@ -75,15 +75,27 @@ const router = createBrowserRouter([
       },
       {
         path: 'record_management',
-        element: <RecordManagement />
+        element: (
+          <ProtectedRoute>
+            <RecordManagement />
+          </ProtectedRoute>
+        ),
       },
       {
         path: 'record_management/upload',
-        element: <RecordUpload />
+        element: (
+          <ProtectedRoute>
+            <RecordUpload />
+          </ProtectedRoute>
+        ),
       },
       {
         path: 'record_management/:id',
-        element: <RecordDetail />
+        element: (
+          <ProtectedRoute>
+            <RecordDetail />
+          </ProtectedRoute>
+        ),
       },
       {
         path: 'record_detail/:id/question_list',
