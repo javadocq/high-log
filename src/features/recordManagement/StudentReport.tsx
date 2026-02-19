@@ -21,10 +21,10 @@ export default function StudentReport() {
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   const { data, isLoading } = useRecordList();
-  const recordList = useMemo(
-    () => (Array.isArray(data) ? data : []),
-    [data],
-  );
+  const recordList = useMemo(() => {
+    if (!data) return [];
+    return Array.isArray(data.records) ? data.records : [];
+  }, [data]);
 
   const filteredData = useMemo(() => {
     return recordList.filter((item: RecordItem) =>

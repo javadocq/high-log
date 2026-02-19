@@ -3,4 +3,25 @@ export interface RecordItem {
   title: string;
 }
 
-export type RecordListResponse = RecordItem[];
+export interface RecordListResponse {
+  records: RecordItem[];
+  totalPages: number;
+  currentPage: number;
+  totalCount: number;
+}
+
+export interface RecordUploadResponse {
+  presignedUrl: string;
+  s3Key: string;
+  expiresIn: number;
+}
+
+export interface CreateRecordRequest {
+  title: string;
+  s3Key: string;
+}
+
+export interface RegisterRecordSSEEvent {
+  type: "processing" | "complete";
+  progress: number;
+}
