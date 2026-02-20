@@ -10,6 +10,7 @@ interface DropDownProps {
     setValue: (value: string) => void;
     placeholder?: string;
     isEditable?: boolean;
+    disabled?: boolean;
 }
 
 export default function DropDown({
@@ -19,10 +20,14 @@ export default function DropDown({
     setValue,
     placeholder = "Select an option",
     isEditable = false,
+    disabled = false,
 }: DropDownProps) {
     const [isOpen, setIsOpen] = useState(false);
 
-    const toggle = () => setIsOpen(!isOpen);
+    const toggle = () => {
+        if (disabled) return;
+        setIsOpen(!isOpen);
+    };
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValue(e.target.value);
@@ -53,7 +58,7 @@ export default function DropDown({
     }, [options, value, isEditable]);
 
     return (
-        <S.Container width={width} isOpen={isOpen}>
+        <S.Container width={width} $isOpen={isOpen} $disabled={disabled}>
             <S.InputWrapper onClick={handleInputClick}>
                 <S.Input
                     value={value}
