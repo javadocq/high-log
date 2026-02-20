@@ -1,13 +1,23 @@
 import styled from "styled-components";
 
-export const Container = styled.div<{ width: string; isOpen?: boolean }>`
+export const Container = styled.div<{
+    width: string;
+    $isOpen?: boolean;
+    $disabled?: boolean;
+}>`
     display: flex;
     flex-direction: column;
     width: ${({ width }) => width};
-    border-radius: ${({ isOpen }) => (isOpen ? "8px 8px 0 0" : "8px")};
+    border-radius: ${({ $isOpen }) => ($isOpen ? "8px 8px 0 0" : "8px")};
     padding: 8px 16px;
-    background-color: ${({theme}) => theme.colors.grayScale["09"]};
+    background-color: ${({ theme }) => theme.colors.grayScale["09"]};
     position: relative;
+    ${({ $disabled }) =>
+        $disabled &&
+        `
+        opacity: 0.5;
+        pointer-events: none;
+    `}
 `;
 
 export const InputWrapper = styled.div`

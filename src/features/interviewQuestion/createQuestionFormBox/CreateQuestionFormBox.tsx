@@ -1,10 +1,18 @@
-import { useState } from "react";
+import { useState, useImperativeHandle, forwardRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import * as S from "@/features/interviewQuestion/createQuestionFormBox/CreateQuestionFormBox.styles";
 import { DefaultButton } from "@/components/button/Button";
 import XIcon from "@/assets/icons/x.svg?react";
 import DropDown from "@/components/input/DropDown";
 import RadioBox from "@/components/input/RadioBox";
+import Modal from "@/components/modal/Modal";
 import type { CreateQuestionFormData } from "@/features/interviewQuestion/types/createQuestion";
+import { useRecordList } from "@/api/record/useRecordListApi";
+
+export interface CreateQuestionFormBoxRef {
+  hasContent: () => boolean;
+  clear: () => void;
+}
 
 const APPLICATION_TYPE_OPTIONS = [
   "학생부 종합 전형",
@@ -24,26 +32,74 @@ const DEPARTMENT_OPTIONS = [
   "의예과",
 ];
 
-const SCHOOL_RECORD_OPTIONS = ["OO의 생기부.pdf", "2024학년도 생활기록부.hwp"];
-
 interface CreateQuestionFormBoxProps {
   onSubmit: (data: CreateQuestionFormData) => void;
+  onFormStateChange?: (hasContent: boolean) => void;
+  onBackToMain?: () => void;
 }
 
-export default function CreateQuestionFormBox({ onSubmit }: CreateQuestionFormBoxProps) {
+const CreateQuestionFormBox = forwardRef<
+  CreateQuestionFormBoxRef,
+  CreateQuestionFormBoxProps
+>(function CreateQuestionFormBox(
+  { onSubmit, onFormStateChange, onBackToMain },
+  ref
+) {
+  const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [school, setSchool] = useState("");
   const [department, setDepartment] = useState("");
   const [applicationType, setApplicationType] = useState("");
   const [schoolRecord, setSchoolRecord] = useState("");
 
+  const handleTitleChange = (value: string) => {
+    setTitle(value);
+    if (!value.trim()) {
+      setSchool("");
+      setDepartment("");
+    }
+  };
+
+  const handleSchoolChange = (value: string) => {
+    setSchool(value);
+    if (!value) setDepartment("");
+  };
+
+  const { data: recordListData, isSuccess: isRecordsSuccess } = useRecordList();
+  const records = recordListData?.records ?? [];
+  const recordOptions = records.map((r) => r.title);
+  const isNoRecordsModalOpen =
+    isRecordsSuccess && records.length === 0;
+
+  const hasContent = !!(title || school || department || applicationType || schoolRecord);
+
+  useImperativeHandle(ref, () => ({
+    hasContent: () => hasContent,
+    clear: () => {
+      setTitle("");
+      setSchool("");
+      setDepartment("");
+      setApplicationType("");
+      setSchoolRecord("");
+    },
+  }));
+
+  useEffect(() => {
+    onFormStateChange?.(hasContent);
+  }, [hasContent, onFormStateChange]);
+
   const handleSubmit = () => {
+    const selectedRecord = records.find((r) => r.title === schoolRecord);
+    if (!selectedRecord) {
+      return; // 생기부 미선택 시 제출 방지
+    }
     onSubmit({
       title,
       school,
       department,
       applicationType,
       schoolRecord,
+      recordId: selectedRecord.id,
     });
   };
 
@@ -58,7 +114,7 @@ export default function CreateQuestionFormBox({ onSubmit }: CreateQuestionFormBo
               <S.TitleInputWrapper>
                 <S.TitleInputField
                   value={title}
-                  onChange={(e) => setTitle(e.target.value)}
+                  onChange={(e) => handleTitleChange(e.target.value)}
                   placeholder="질문 기록 저장을 위한 제목을 입력해 주세요 ex) 한양대 면접용"
                 />
                 {title && (
@@ -66,7 +122,7 @@ export default function CreateQuestionFormBox({ onSubmit }: CreateQuestionFormBo
                     width={24}
                     height={24}
                     stroke="#737373"
-                    onClick={() => setTitle("")}
+                    onClick={() => handleTitleChange("")}
                     style={{ cursor: "pointer" }}
                   />
                 )}
@@ -85,8 +141,9 @@ export default function CreateQuestionFormBox({ onSubmit }: CreateQuestionFormBo
                 width="340px"
                 options={SCHOOL_OPTIONS}
                 value={school}
-                setValue={setSchool}
+                setValue={handleSchoolChange}
                 placeholder="학교를 입력해 주세요"
+                disabled={!title.trim()}
               />
             </S.DropDownGroup>
             <S.DropDownGroup>
@@ -97,6 +154,7 @@ export default function CreateQuestionFormBox({ onSubmit }: CreateQuestionFormBo
                 value={department}
                 setValue={setDepartment}
                 placeholder="학과를 입력해 주세요"
+                disabled={!school}
               />
             </S.DropDownGroup>
           </S.SchoolDepartmentRow>
@@ -143,7 +201,7 @@ export default function CreateQuestionFormBox({ onSubmit }: CreateQuestionFormBo
         <S.SchoolRecordDropDownWrapper>
           <DropDown
             width="100%"
-            options={SCHOOL_RECORD_OPTIONS}
+            options={recordOptions}
             value={schoolRecord}
             setValue={setSchoolRecord}
             placeholder="생기부를 선택해 주세요"
@@ -153,11 +211,23 @@ export default function CreateQuestionFormBox({ onSubmit }: CreateQuestionFormBo
       <S.FormFieldButton>
         <DefaultButton
           width={174}
-          type="primary"
+          type={schoolRecord ? "primary" : "disabled"}
           text="질문 생성하기"
           onClick={handleSubmit}
         />
       </S.FormFieldButton>
+      <Modal
+        isOpen={isNoRecordsModalOpen}
+        onClose={() => onBackToMain?.()}
+        mainTitle="먼저 생기부를 업로드 해주세요"
+        subTitle="질문 생성을 위해 생기부가 필요해요"
+        leftButtonText="닫기"
+        rightButtonText="업로드 하기"
+        onLeftButtonClick={() => onBackToMain?.()}
+        onRightButtonClick={() => navigate("/record_management")}
+      />
     </S.CreateFormBox>
   );
-}
+});
+
+export default CreateQuestionFormBox;
